@@ -1,0 +1,74 @@
+package sortingCar;
+import java.util.Comparator;
+
+
+public class Car implements Comparable{
+	int speed;
+	int price;
+	String model;
+	String color;
+	static boolean SortByPrice, SortBySpeed, SortByModel, SortByColor;
+	
+	Car(int speed, int price, String model, String color) {
+		this.speed=speed;
+		this.price=price;
+		this.model=model;
+		this.color=color;
+	}
+	
+	public String toString() {
+		return this.model+", "+this.color+", "+this.speed+", "+this.price;
+	}
+	
+	public int compareTo(Object o) {
+		
+//		int compareByPrice=0;
+//		int compareBySpeed=0;
+//		int compareByModel=0;
+//		int compareByColor=0;
+		int compare=0;
+		
+		// sorting by 1 parametr ony
+		if (SortByPrice==true && SortBySpeed==false && SortByModel==false && SortByColor==false) {
+			compare = this.price-(((Car)o).price); 
+		}
+			
+		if (SortByPrice==false && SortBySpeed==true && SortByModel==false && SortByColor==false) {
+			compare = this.speed-(((Car)o).speed); 
+		}
+		
+		if (SortByPrice==false && SortBySpeed==false && SortByModel==true && SortByColor==false) {
+			compare = this.model.compareTo(((Car)o).model);
+		}
+		
+		if (SortByPrice==false && SortBySpeed==false && SortByModel==false && SortByColor==true) {
+			compare = this.color.compareTo(((Car)o).color);
+		}
+		
+		// sorting by 2 parametrs
+		if (SortByPrice==true && SortBySpeed==true && SortByModel==false && SortByColor==false) {
+			compare = this.price-(((Car)o).price); 
+			if (compare==0) {
+				compare=this.speed-(((Car)o).speed); 
+			}
+		}
+		
+		// sorting by 3 parametrs
+				if (SortByPrice==true && SortBySpeed==true && SortByModel==true && SortByColor==false) {
+					compare = this.price-(((Car)o).price); 
+					if (compare==0) {
+						compare=this.speed-(((Car)o).speed); 
+						if (compare==0) {
+							compare = this.model.compareTo(((Car)o).model);
+						}
+					}
+				}
+				
+		// sorting by 3 parametrs // TODO: 23.06.2017  
+
+        return compare;
+	}
+		 
+	
+}
+
