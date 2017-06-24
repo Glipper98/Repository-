@@ -1,0 +1,107 @@
+package sortingCar;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Menu {
+	private int addedCars;
+	private int maxPossibleCars;
+	
+	private int currentMenuState;
+	private Car[] cars; 
+	
+	Menu(int maxPossibleCars) {
+		this.maxPossibleCars=maxPossibleCars;
+		Car.SortByPrice=true;
+		Car.SortBySpeed=false;
+		Car.SortByModel=false;
+		Car.SortByColor=false;
+		currentMenuState=-1;
+		cars=new Car[maxPossibleCars];
+	}
+	
+	public int getMenuState() {
+		return this.currentMenuState;
+	}
+	
+	public int selectedItem() {
+		System.out.println("----------------------");
+		System.out.println("Car sorting, ver.01");
+		System.out.println("----------------------");
+		System.out.println("[1] Add a car ("+addedCars+" cars added from "+maxPossibleCars+" possible cars)");
+		System.out.println("[2] Sort by price ? ("+(Car.SortByPrice ? "x":" ")+") - yes, ("+(!Car.SortByPrice ? "x":" ") +") - no");
+		System.out.println("[3] Sort by speed ? ("+(Car.SortBySpeed ? "x":" ")+") - yes, ("+(!Car.SortBySpeed ? "x":" ") +") - no");
+		System.out.println("[4] Sort by model ? ("+(Car.SortByModel ? "x":" ")+") - yes, ("+(!Car.SortByModel ? "x":" ") +") - no");
+		System.out.println("[5] Sort by color ? ("+(Car.SortByColor ? "x":" ")+") - yes, ("+(!Car.SortByColor ? "x":" ") +") - no");
+		System.out.println("[6] Print all cars to screen");
+		System.out.println("[7] Exit");
+		System.out.println("-----");
+		System.out.print("Select menu item[]: ");
+		
+		Scanner menuSelect=new Scanner(System.in);
+		this.currentMenuState=menuSelect.nextInt();
+		
+		return this.currentMenuState;
+	}
+	
+	public int addCar() {
+		int speed, price;
+		String model, color;
+		
+		Scanner subMenuSelect=new Scanner(System.in);
+		System.out.print("Enter price: ");
+		price=subMenuSelect.nextInt();
+		System.out.println();
+		
+		System.out.print("Enter speed: ");
+		speed=subMenuSelect.nextInt();
+		System.out.println();
+		
+		System.out.print("Enter model: ");
+		model=subMenuSelect.next();
+		System.out.println();
+		
+		System.out.print("Enter color: ");
+		color=subMenuSelect.next();
+		System.out.println();
+		
+		cars[addedCars++]=new Car(speed, price, model, color);
+		System.out.println("Car was succesfully added");
+		
+		return 0; // -1 if faild
+	}
+	
+	public void tAddCar(int speed, int price, String model, String color) {
+		cars[addedCars++]=new Car(speed, price, model, color);
+		System.out.println("Car "+ addedCars+" was added");
+
+	}
+	
+	
+	public void listAllCars() {
+		Car[] tcars=new Car[addedCars]; 
+		for (int i=0;i<tcars.length; i++) {
+			tcars[i]=cars[i];
+		}
+		
+		
+		Arrays.sort(tcars);
+		
+		for(Car temp: tcars) {
+			System.out.println(temp);
+		}
+	}
+	
+	public void changeSortByPrice() {
+		Car.SortByPrice=!Car.SortByPrice;
+	}
+	public void changeSortBySpeed() {
+		Car.SortBySpeed=!Car.SortBySpeed;
+	}
+	public void changeSortByModel() {
+		Car.SortByModel=!Car.SortByModel;
+	}
+	public void changeSortByColor() {
+		Car.SortByColor=!Car.SortByColor;
+	}
+}
