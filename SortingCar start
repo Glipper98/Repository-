@@ -1,0 +1,48 @@
+package sortingCar;
+public class Start {
+	public static void main(String[] args) {
+		Menu myMenu=new Menu(25);
+		
+		while (myMenu.selectedItem()!=7) {
+			switch (myMenu.getMenuState()) {
+				case 1:
+//					myMenu.addCar();
+					myMenu.tAddCar(190,3700,"Slavuta","Red");
+					myMenu.tAddCar(120,1700,"VAZ","Yellow");
+					myMenu.tAddCar(290,30700,"Mersedes","Metallic");
+					myMenu.tAddCar(310,170000,"Ferrari","Red");
+					myMenu.tAddCar(190,10700,"Ford","Black");
+					myMenu.tAddCar(170,12000,"Porshe","Black");
+					myMenu.tAddCar(150,12000,"Porshe","Red");
+					myMenu.tAddCar(120,12000,"Porshe","Invisible");
+					myMenu.tAddCar(170,12000,"BMW","Black");
+					myMenu.tAddCar(150,12000,"BMW","Red");
+					myMenu.tAddCar(120,12000,"BMW","Invisible");
+					break;
+				case 2:
+					myMenu.changeSortByPrice();
+					break;
+				case 3:
+					myMenu.changeSortBySpeed();
+					break;
+				case 4:
+					myMenu.changeSortByModel();
+					break;
+				case 5:
+					myMenu.changeSortByColor();
+					break;
+				case 6:
+					myMenu.listAllCars();
+					break;
+				default:
+					System.out.println("Wrong menu item select. Please, try again.");
+					break;
+		}
+		}
+		
+		System.out.println(" ---------------------------------------------------");
+		System.out.println("| Thank's for using our software! Have a nice day!  |");
+		System.out.println(" ---------------------------------------------------");
+	}
+
+}
